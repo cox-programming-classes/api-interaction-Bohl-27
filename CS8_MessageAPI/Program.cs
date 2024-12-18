@@ -14,9 +14,9 @@ await apiService.Login("jcox@winsor.edu", "not my password",
     
 if(!loginSuccess)
     return;
-    
-Console.WriteLine($"jwt: {apiService.AuthorizedUser?.jwt}");
 
-var b64String = Convert.FromBase64String(apiService.AuthorizedUser?.jwt ?? "");
-
-Console.WriteLine(b64String);
+var myFreeBlocks = await apiService.SendAsync<FreeBlockCollection>(HttpMethod.Get, "api/schedule/free-blocks/for/voEV6yMD6RW0", 
+    err =>
+    {
+        Console.WriteLine(err);
+    });
